@@ -1,0 +1,54 @@
+<head>
+  <title>hashtagBattle</title>
+</head>
+
+<body>
+  {{> hello}}
+  {{> form}}
+  {{> battle_results}}
+</body>
+
+<template name="hello">
+  <h1>Greetings Earthling!!</h1>
+  {{greeting}}
+</template>
+
+
+<template name="form"> 
+<div class="ui form segment">
+  <div class="two fields">
+    <div class="field">
+      <label>Hash Tag 1</label>
+      <input id="brand1" placeholder="#brand1" type="text">
+    </div>
+    <div class="field">
+      <label>Hash Tag 2</label>
+      <input id="brand2" placeholder="#brand2" type="text">
+    </div>
+  </div>
+<div id="button" class="ui blue submit button">Start the battle!!</div>
+<div id="buttonStop" class="ui red submit button">I've had enough!!</div>
+</div>
+</template>
+
+<template name="battle_results"> 
+<div id="battle_results">
+  <h1>And so the battle begins!!</h1><hr>
+  <div class="ui two column middle aligned relaxed grid basic segment">
+    <div class="center aligned column">
+      {{#each battle}}
+          {{#each data}}
+              <strong>{{brand}}</strong>- <a id="score1" class="ui black circular label"> {{score}} </a>
+	      <div class="ui vertical divider">Vs
+	      </div>
+          {{/each}}
+      {{/each}}
+      
+      <br><br>
+      
+    </div>
+  </div>
+</div>
+
+
+</template>
