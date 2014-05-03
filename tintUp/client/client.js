@@ -3,7 +3,7 @@ BattleStats =  new Meteor.Collection("battle");
 
 if (Meteor.isClient) {
     Template.hello.greeting = function () {
-	return "Welcome to the epic hashtagBattle.";
+	return "Welcome to the epic hashtagBattle. Remember the scores hold valid for 2 minutes.";
     };
     //Declarations
     var clientId = Meteor.uuid();
@@ -21,6 +21,10 @@ if (Meteor.isClient) {
 		brand1 = document.getElementById("brand1").value;
 		brand2 = document.getElementById("brand2").value;
 		// MongoDB Insert
+		//Check if it's a new request from the same client
+		if(BattleStats.find({_id:clientId}))
+		    BattleStats.remove({_id: clientId});
+		//New client
 		BattleStats.insert({_id: clientId, data: [{brand: brand1, score: 0}, {brand: brand2, score: 0}]});
 		// Pass the input data to the server.
 		Meteor.call('startStream', clientId, brand1, brand2, function(err, response){
@@ -33,10 +37,9 @@ if (Meteor.isClient) {
             'click #buttonStop': function () {
                 BattleStats.remove({_id: clientId});
 		Meteor.call('stopStream', function(err, response){
-			if (err)
                             alert("Error: stopStream is yet to be hooked up to this button :("+ err)
                                 });
             }
         });
-
+    
 }

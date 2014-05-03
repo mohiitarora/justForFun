@@ -8,19 +8,13 @@ if (Meteor.isServer) {
 	    BattleStats.remove({});	                                                              
 	});
     //App details
-        var twit = new Twitter({
-		consumer_key: 'WFEXEONzvGOXNUEgRNvLsd0ly',
-	    consumer_secret: 'nzdYATfDAqxM3SMxhe69Ov2i3dHRp1SIVtUDAnkkXZWvWGZPs5',
-	    access_token_key: '98678259-fxMNnOJZlqL5FwHCUA43ZTbTTxBOF4Uabk2bIEqMk',
-	    access_token_secret: 'FJNMiaOpS8Ledr7KHkObPEiIG9It98CZlJtUjLUB59tCm'
-	});
-    /*    var twit = new Twitter({                                                                                                          
-            consumer_key: 'z3kvW9SblFaDK5nQvnw0pw',
-            consumer_secret: '8DLkKZsiHzdiulQvVhoSbe1yj77zO2uQ7kGL7MJsDk4',
-            access_token_key: '98678259-y1LVfhSv6K5nJ4VmqTiJwI0v9WcwVARPZaVXQ2wp0',
-            access_token_secret: '301LhzHyEvgCP7JANbQKfxEe9o7p9HusH9JgNgxvqJU'
-	    });   
-	*/
+    var twit = new Twitter({
+		consumer_key: '',
+		consumer_secret: '',
+		access_token_key: '',
+	    access_token_secret: ''
+	    });
+
     Meteor.methods({
 	    stopStream: function() {
 		//do nothing
@@ -35,9 +29,9 @@ if (Meteor.isServer) {
 			stream.on('data', function(data) {
 				Fiber( function() {
 					var tweetText = data.text;
-					tweetText.toLowerCase();
-					brand1.toLowerCase();
-					brand2.toLowerCase();
+					tweetText = tweetText.toLowerCase();
+					brand1 = brand1.toLowerCase();
+					brand2 = brand2.toLowerCase();
 					//identify hashTag and increment corresponding counter
 					var ht1Present = tweetText.search(brand1);
 					var ht2Present = tweetText.search(brand2);
@@ -47,20 +41,12 @@ if (Meteor.isServer) {
 					if(ht2Present != -1)
 					    BattleStats.update({_id: clientId},{$inc: {"data.1.score": 1}});
 					
-					//console.log(data.text);
+					console.log(data.text);
 				    }).run();
+				if(stream){
+				    setTimeout(stream.destroy, 120000);
+				}
 			    });
-			//stream.on('disconnect', function (disconnectMessage) {
-			//stream.destroy();
-				//console.log('disconnect', disconnectMessage)
-				//    });
-			/*stream.on('reconnect', function (req, res, ival) {
-				console.log('reconnect', ival)
-				    });
-			stream.on('connect', function (req) {
-				console.log('connect')
-				});*/
-			//console.log("destroying stream");
 		    });
 		return "clientId";
 	    }});
