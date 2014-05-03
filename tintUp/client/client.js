@@ -32,7 +32,10 @@ if (Meteor.isClient) {
     Template.form.events({
             'click #buttonStop': function () {
                 BattleStats.remove({_id: clientId});
-		
+		Meteor.call('stopStream', function(err, response){
+			if (err)
+                            alert("Error: stopStream is yet to be hooked up to this button :("+ err)
+                                });
             }
         });
 
