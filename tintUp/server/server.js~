@@ -9,11 +9,11 @@ if (Meteor.isServer) {
 	});
     //App details
     var twit = new Twitter({
-	    consumer_key: 'o5UKhsFYP2VluHFKoDyRDdhbN',
-	    consumer_secret: 'pdPugTUALH1divj5HWaOF5WEwdz05BDnbHsY6pflnNSoRCbEDG',
-	    access_token_key: '98678259-fxMNnOJZlqL5FwHCUA43ZTbTTxBOF4Uabk2bIEqMk',
-	    access_token_secret: 'FJNMiaOpS8Ledr7KHkObPEiIG9It98CZlJtUjLUB59tCm'
-	});
+		consumer_key: '',
+		consumer_secret: '',
+		access_token_key: '',
+	    access_token_secret: ''
+	    });
 
     Meteor.methods({
 	    stopStream: function() {
