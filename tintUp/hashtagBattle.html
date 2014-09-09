@@ -27,19 +27,18 @@
     </div>
   </div>
 <div id="button" class="ui blue submit button">Start the battle!!</div>
-<div id="buttonStop" class="ui red submit button">I've had enough!!</div>
+<div id="buttonStop" class="ui red submit button">Stop!!</div>
 </div>
 </template>
 
 <template name="battle_results"> 
 <div id="battle_results">
-  <h1>And so the battle begins!!</h1><hr>
+  <h1>Battle Results!!</h1><hr>
   <div class="ui two column middle aligned relaxed grid basic segment">
     <div class="center aligned column">
       {{#each battle}}
           {{#each data}}
               <strong>{{brand}}</strong>- <a id="score1" class="ui black circular label"> {{score}} </a>
-	      <div class="ui vertical divider">Vs
 	      </div>
           {{/each}}
       {{/each}}
