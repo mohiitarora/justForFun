@@ -8,11 +8,11 @@
  
 public class AddTwoNumbers{
 
-    static ListNode l3;
-    static ListNode h3;
-    static boolean  remainder;
+    ListNode l3;
+    ListNode h3;
+    boolean  remainder;
     
-    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 
 	if(l1 == null && l2 == null)
 	    return null;
@@ -24,10 +24,11 @@ public class AddTwoNumbers{
 	    if(l2 != null)
 		l2 = l2.next;
 	}
+
 	return h3;
     }
     
-    protected static void addNode(ListNode l1, ListNode l2){
+    protected void addNode(ListNode l1, ListNode l2){
 	byte addResult = (byte) ((l1 != null)? l1.val : 0);
 	addResult += (byte) ((l2 != null)? l2.val : 0);
 	if(remainder)
@@ -41,7 +42,8 @@ public class AddTwoNumbers{
 	    addNewNodeToList(addResult);
     }
     
-    protected static void addNewNodeToList(int addResult){
+    // Adds result to final result list
+    protected void addNewNodeToList(int addResult){
 	if(l3 == null){
 	    l3 = new ListNode(addResult);
 	    h3 = l3;
@@ -51,16 +53,5 @@ public class AddTwoNumbers{
 	    l3.next = new ListNode(addResult);
 	    l3 = l3.next;
 	}
-	
-    }
-    
-    public static void main(String args[]){
-	
-	ListNode a = new ListNode(5);
-	
-	ListNode b = new ListNode(5);
-	
-	addTwoNumbers(a, b);
-	
     }
 }
